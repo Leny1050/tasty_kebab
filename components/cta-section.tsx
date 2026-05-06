@@ -1,8 +1,7 @@
 "use client"
 
-import { Phone } from "lucide-react"
+import { MapPin, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { SITE_CONFIG } from "@/lib/config"
 import { useLanguage } from "./language-provider"
 
 export function CtaSection() {
@@ -39,9 +38,10 @@ export function CtaSection() {
                 size="lg"
                 className="group h-14 rounded-full bg-background px-8 text-base font-bold text-foreground shadow-2xl hover:bg-background/95"
               >
-                <a href={SITE_CONFIG.brand.phoneHref}>
-                  <Phone className="h-5 w-5 text-primary" />
-                  {SITE_CONFIG.brand.phone}
+                <a href="#locations">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  {t.nav.locations}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </Button>
             </div>

@@ -4,7 +4,7 @@ import { useMemo, useState } from "react"
 import Image from "next/image"
 import { Plus, Sparkles, Flame } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { MENU_CATEGORIES, MENU_ITEMS, type MenuItem } from "@/lib/config"
+import { MENU_CATEGORIES, MENU_ITEMS, SITE_CONFIG, type MenuItem } from "@/lib/config"
 import { useLanguage } from "./language-provider"
 import { cn } from "@/lib/utils"
 
@@ -196,7 +196,7 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
             asChild
             className="h-10 gap-1.5 rounded-full bg-primary px-4 font-semibold text-primary-foreground shadow shadow-primary/20 hover:bg-primary/90"
           >
-            <a href="tel:+37362192666" aria-label={`${t.menu.addBtn} ${item.name}`}>
+            <a href={SITE_CONFIG.brand.glovoUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t.menu.addBtn} ${item.name}`}>
               <Plus className="h-4 w-4" strokeWidth={2.5} />
               {t.menu.addBtn}
             </a>

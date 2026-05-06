@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { Menu, Phone, X, ShoppingBag } from "lucide-react"
+import { Menu, X, ShoppingBag } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Logo } from "./logo"
@@ -78,17 +78,7 @@ export function SiteHeader() {
               <span className="xl:hidden">Glovo</span>
             </a>
           </Button>
-          <Button
-            asChild
-            size="sm"
-            className="hidden rounded-full bg-primary font-semibold text-primary-foreground shadow-md shadow-primary/25 hover:bg-primary/90 md:inline-flex"
-          >
-            <a href={SITE_CONFIG.brand.phoneHref}>
-              <Phone className="mr-1 h-4 w-4" />
-              <span className="hidden xl:inline">{SITE_CONFIG.brand.phone}</span>
-              <span className="xl:hidden">{t.hero.ctaCall}</span>
-            </a>
-          </Button>
+
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
@@ -145,12 +135,7 @@ export function SiteHeader() {
                       Заказать в Glovo
                     </a>
                   </Button>
-                  <Button asChild className="w-full rounded-full bg-primary text-primary-foreground" size="lg">
-                    <a href={SITE_CONFIG.brand.phoneHref}>
-                      <Phone className="mr-2 h-4 w-4" />
-                      {SITE_CONFIG.brand.phone}
-                    </a>
-                  </Button>
+
                 </div>
               </div>
             </SheetContent>

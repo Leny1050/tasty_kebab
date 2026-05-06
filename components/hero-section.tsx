@@ -1,10 +1,18 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import { ArrowRight, Phone, Star, Clock, MapPin, Flame, ShoppingBag } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "./language-provider"
-import { SITE_CONFIG } from "@/lib/config"
+import { SITE_CONFIG, LOCATIONS } from "@/lib/config"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 export function HeroSection() {
   const { t } = useLanguage()
@@ -75,17 +83,42 @@ export function HeroSection() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="h-14 w-full rounded-full border-2 border-foreground/15 bg-background/70 px-8 text-base font-bold backdrop-blur hover:bg-background sm:w-auto"
-            >
-              <a href={SITE_CONFIG.brand.phoneHref}>
-                <Phone className="h-4 w-4" />
-                {t.hero.ctaCall}
-              </a>
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="h-14 w-full rounded-full border-2 border-foreground/15 bg-background/70 px-8 text-base font-bold backdrop-blur hover:bg-background sm:w-auto"
+                >
+                  <Phone className="h-4 w-4" />
+                  {t.hero.ctaCall}
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="w-[92vw] max-w-[360px] rounded-2xl border-0 p-0 shadow-2xl">
+                <div className="p-5">
+                  <DialogHeader>
+                    <DialogTitle className="font-display text-lg text-center">{t.locations.title}</DialogTitle>
+                  </DialogHeader>
+                  <div className="mt-4 space-y-2">
+                    {LOCATIONS.map((loc) => (
+                      <a
+                        key={loc.id}
+                        href={loc.phoneHref}
+                        className="group flex items-center gap-3 rounded-xl bg-muted/50 p-3 transition-all hover:bg-primary/10 active:scale-[0.98]"
+                      >
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                          <Phone className="h-4 w-4" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="truncate font-medium text-foreground text-sm">{loc.address}</div>
+                          <div className="text-xs text-primary font-semibold">{loc.phone}</div>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
             <Button
               asChild
               size="lg"
